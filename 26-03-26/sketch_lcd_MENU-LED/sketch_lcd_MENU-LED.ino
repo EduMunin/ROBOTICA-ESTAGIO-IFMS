@@ -6,6 +6,9 @@ LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
 // LED VERDE
 #define led_verde 7
 
+// BUZZER
+int buzzer = 8;
+
 // DEFINIR ESTADOS DE MENU
 enum Estado {MENU, LIGAR, DESLIGAR, SAIR};
 Estado estadoAtual = MENU;
@@ -13,9 +16,9 @@ Estado ultimoEstado = 2;
 
 void setup() {
 pinMode(led_verde, OUTPUT);
+pinMode(buzzer,OUTPUT);
 lcd.begin(16, 2);
 Serial.begin(9600);
-
 }
 // FUNÇÃO MENU
 void mostrarMenu() {
@@ -47,6 +50,7 @@ void desligar(){
 }
 
 void loop() {
+  tone(buzzer, 1000);
 
   if(estadoAtual != ultimoEstado){/// if para lembrar do ultimo estado e nao rodar infinitamente menu
 
